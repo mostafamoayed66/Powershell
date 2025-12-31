@@ -1,10 +1,6 @@
 # Powershell
 The Explanation about Powershell
 
-<picture>
-  <img src="![Uploading Powershell_MindMap.png…]()" alt="Flowers" style="width:auto;">
-</picture>
-
 ![Uploading Powershell_MindMap.png…]()
 
 [Powershell_MindMap.md](https://github.com/user-attachments/files/24392265/Powershell_MindMap.md)# PowerShell Quick Start and Essentials
