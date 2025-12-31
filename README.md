@@ -1,7 +1,7 @@
 # Powershell
 The Explanation about Powershell
 
-[Contribution guidelines for this project](Powershell/Powershell_MindMap.md)
+[Contribution guidelines for this project](./Powershell_MindMap.md)
 
 [Powershell_MindMap.md](https://github.com/user-attachments/files/24392265/Powershell_MindMap.md)# PowerShell Quick Start and Essentials
 
