@@ -5,3 +5,6 @@ The Explanation about Powershell
   <img src="![Uploading Powershell_MindMap.png…]()" alt="Flowers" style="width:auto;">
 </picture>
 
+
+![Uploading Powershell_MindMap.png…]()
+
