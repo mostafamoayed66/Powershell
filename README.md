@@ -2,9 +2,9 @@
 The Explanation about Powershell
 
 <picture>
-  <source media="(min-width:650px)" srcset="../Powershell_MindMap.png">
-  <source media="(min-width:465px)" srcset="../Powershell_MindMap.png">
-  <img src="../Powershell_MindMap.png" alt="Flowers" style="width:auto;">
+  <source media="(min-width:650px)" srcset="./Powershell_MindMap.png">
+  <source media="(min-width:465px)" srcset="./Powershell_MindMap.png">
+  <img src="./Powershell_MindMap.png" alt="Flowers" style="width:auto;">
 </picture>
 
 [Powershell_MindMap.md](https://github.com/user-attachments/files/24392265/Powershell_MindMap.md)# PowerShell Quick Start and Essentials
