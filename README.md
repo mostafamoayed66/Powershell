@@ -7,7 +7,7 @@
 # Powershell
 The Explanation about Powershell. PowerShell Quick Start and Essentials
 
-# Creator
+## Creator
 Mostafa Moayedpour
 
 [Powershell_MindMap.md](https://github.com/user-attachments/files/24392265/Powershell_MindMap.md)# PowerShell Quick Start and Essentials
@@ -87,6 +87,8 @@ Copy-Item, Move-Item, and Remove-Item for file manipulation.
 
 Test-Path to verify file or folder existence.
 
+### More Information and Tutorial
+https://www.tutorialspoint.com/powershell/index.htm
 Rename-Item to change file names.
 
 ## 🏢 Working with Active Directory (AD)
