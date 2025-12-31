@@ -149,3 +149,61 @@ OtherTransferCount         : 25010
 C:\PS> Get-SystemProcessInformation -ProcName note
 
 ```
+
+## Get-NetworkInformation
+
+This PowerShell script provides a colorful overview of your system's network status. Let me explain it section by section so it’s completely clear what it does.
+1) Defining colors for network adapter status
+``` bash
+$statusColor = @{ "Up" = "Green"; "Disconnected" = "Red"; "Disabled" = "DarkGray" }
+```
+Here, a hashtable is created that assigns a color for each network adapter status:
+. Up → Green
+. Disconnected → Red
+. Disabled → DarkGray
+---
+🔍 2) Getting the list of network adapters and displaying them with colors
+``` bash
+Get-NetAdapter | Sort Status,Name | ForEach-Object {
+    $color = if ($statusColor.ContainsKey($_.Status)) { $statusColor[$_.Status] } else { "White" }
+```
+. Retrieves the list of network adapters
+. Sorts them by status and name
+. Chooses an appropriate color for each adapter
+
+
+Then, it prints the information for each network adapter:
+``` bash
+Write-Host "$($_.Name.PadRight(28)) " -NoNewline -ForegroundColor $color
+Write-Host "$($_.Status.PadRight(14)) " -NoNewline -ForegroundColor $color
+Write-Host "$($_.LinkSpeed.PadRight(12)) " -NoNewline
+Write-Host "$($_.InterfaceDescription)" -ForegroundColor DarkGray
+```
+These four lines display:
+. Network adapter name
+. Status (Up/Disconnected/Disabled)
+. Link speed (e.g., 1Gbps)
+. Adapter description
+The first two items are printed in the color corresponding to the adapter status.
+---
+🌍 3) Displaying the system’s public IP
+``` bash
+Write-Host "Public IP: " -NoNewline -ForegroundColor Yellow
+try { (Invoke-RestMethod -Uri "https://api.ipify.org" -TimeoutSec 5) } catch { "N/A" }
+```
+. Prints the text "Public IP" in yellow
+. Then retrieves your public IP using the ipify.org service
+. If an error occurs, it prints "N/A"
+---
+🔌 4) Counting listening ports
+``` bash
+Write-Host "Listening ports count: " -NoNewline
+(Get-NetTCPConnection | Where-Object State -eq Listen).Count
+``` 
+Counts the number of ports that are in the LISTEN state
+In other words, services on your system that are waiting for incoming connections
+📌 Summary
+This script:
+. Displays the status of network adapters with colors
+. Shows your public IP
+. Counts open (LISTEN) ports
