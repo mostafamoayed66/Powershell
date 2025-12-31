@@ -103,44 +103,49 @@ Passwords require conversion to a secure string using ConvertTo-SecureString.
 
 AD manipulations can be scripted for automation in enterprise environments.
 
-## Get-ProcessMiniDump
+## Get-SystemProcessInformation
 
-Create process dump using Dbghelp::MiniDumpWriteDump.
+Use NtQuerySystemInformation::SystemProcessInformation to get a detailed list of processes and process properties. On close inspection you will find that many process monitors such as Sysinternals Process Explorer or Process Hacker use this information class (in addition to SystemPerformanceInformation, SystemProcessorPerformanceInformation and SystemProcessorCycleTimeInformation).
 
 ``` bash
-# Elevated user dumping elevated process
+# Return full process listing
+C:\PS> Get-SystemProcessInformation
 
-C:\PS> (Get-Process lsass).Id
-528
+# Return only specific PID
+C:\PS> Get-SystemProcessInformation -ProcID 1336
 
-C:\PS> $CallResult = Get-ProcessMiniDump -ProcID 528 -Path C:\Users\asenath.waite\Desktop\tmp.ini -Verbose
-VERBOSE: [?] Running as: Administrator
-VERBOSE: [?] Administrator privileges required
-VERBOSE: [>] Administrator privileges held
-VERBOSE: [>] Process dump success!
+PID                        : 1336
+InheritedFromPID           : 1020
+ImageName                  : svchost.exe
+Priority                   : 8
+CreateTime                 : 0d:9h:8m:47s
+UserCPU                    : 0d:0h:0m:0s
+KernelCPU                  : 0d:0h:0m:0s
+ThreadCount                : 12
+HandleCount                : 387
+PageFaults                 : 7655
+SessionId                  : 0
+PageDirectoryBase          : 3821568
+PeakVirtualSize            : 2097249.796875 MB
+VirtualSize                : 2097240.796875 MB
+PeakWorkingSetSize         : 11.65625 MB
+WorkingSetSize             : 6.2109375 MB
+QuotaPeakPagedPoolUsage    : 0.175910949707031 MB
+QuotaPagedPoolUsage        : 0.167121887207031 MB
+QuotaPeakNonPagedPoolUsage : 0.0151519775390625 MB
+QuotaNonPagedPoolUsage     : 0.0137710571289063 MB
+PagefileUsage              : 3.64453125 MB
+PeakPagefileUsage          : 4.14453125 MB
+PrivatePageCount           : 3.64453125 MB
+ReadOperationCount         : 0
+WriteOperationCount        : 0
+OtherOperationCount        : 223
+ReadTransferCount          : 0
+WriteTransferCount         : 0
+OtherTransferCount         : 25010
 
-C:\PS> $CallResult
-True
-
-# low priv user dumping low priv process
-
-C:\PS> (Get-Process calc).Id
-2424
-
-C:\PS> $CallResult = Get-ProcessMiniDump -ProcID 2424 -Path C:\Users\asenath.waite\Desktop\tmp.ini -Verbose
-VERBOSE: [?] Running as: asenath.waite
-VERBOSE: [>] Process dump success!
-
-C:\PS> $CallResult
-True
-
-# low priv user dumping elevated process
-C:\PS> $CallResult = Get-ProcessMiniDump -ProcID 4 -Path C:\Users\asenath.waite\Desktop\tmp.ini -Verbose
-VERBOSE: [?] Running as: asenath.waite
-VERBOSE: [?] Administrator privileges required
-VERBOSE: [!] Administrator privileges not held!
-
-C:\PS> $CallResult
-False
+# Possibly returns multiple processes
+# eg: notepad.exe & notepad++.exe
+C:\PS> Get-SystemProcessInformation -ProcName note
 
 ```
