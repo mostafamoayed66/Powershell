@@ -4,14 +4,10 @@
   <img src="./Powershell_MindMap.png" alt="Flowers" style="width:auto;">
 </picture>
 
-# Powershell
+## Powershell
 The Explanation about Powershell. PowerShell Quick Start and Essentials
 
-## Creator
-Mostafa Moayedpour
-
 [Powershell_MindMap.md](https://github.com/user-attachments/files/24392265/Powershell_MindMap.md)# PowerShell Quick Start and Essentials
-
 
 ## 🖥️ Introduction and Setup
 
