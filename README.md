@@ -161,7 +161,7 @@ Here, a hashtable is created that assigns a color for each network adapter statu
 . Up → Green
 . Disconnected → Red
 . Disabled → DarkGray
----
+
 🔍 2) Getting the list of network adapters and displaying them with colors
 ``` bash
 Get-NetAdapter | Sort Status,Name | ForEach-Object {
@@ -185,7 +185,7 @@ These four lines display:
 . Link speed (e.g., 1Gbps)
 . Adapter description
 The first two items are printed in the color corresponding to the adapter status.
----
+
 🌍 3) Displaying the system’s public IP
 ``` bash
 Write-Host "Public IP: " -NoNewline -ForegroundColor Yellow
@@ -194,7 +194,7 @@ try { (Invoke-RestMethod -Uri "https://api.ipify.org" -TimeoutSec 5) } catch { "
 . Prints the text "Public IP" in yellow
 . Then retrieves your public IP using the ipify.org service
 . If an error occurs, it prints "N/A"
----
+
 🔌 4) Counting listening ports
 ``` bash
 Write-Host "Listening ports count: " -NoNewline
@@ -202,6 +202,7 @@ Write-Host "Listening ports count: " -NoNewline
 ``` 
 Counts the number of ports that are in the LISTEN state
 In other words, services on your system that are waiting for incoming connections
+
 📌 Summary
 This script:
 . Displays the status of network adapters with colors
